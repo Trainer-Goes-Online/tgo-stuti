@@ -1,0 +1,11 @@
+node_modules
+.next
+out
+*.tsbuildinfo
+.env
+.env.local
+.env*.local
+.env.example
+.DS_Store
+# client originals never ship: only compressed derivatives go in /public
+_intake/

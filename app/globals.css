@@ -1,0 +1,119 @@
+/* ════════════════════════════════════════════════════════════════
+   TGO-STUTI · globals.css
+   PART 1 of the SDP VSL skin: the THEME token block. landing.css is
+   token-only, so the whole page re-themes from here.
+
+   THEME: "Saffron & Marigold", the astrology category palette (AstroSage
+   saffron and marigold creams, Astrotalk marigold on warm near-black).
+   Cormorant Garamond heads, Manrope body.
+
+   SAFFRON is the structure and the CTA on light grounds (white text 4.5:1);
+   MARIGOLD is the lit accent and CTA on the dark bands, with dark text.
+
+   Tokens live on :root so LAUNCH's checkout, booking, thank-you, policy
+   and footer CSS read the same palette. The next/font variables they
+   reference are set on <html> by app/layout.tsx.
+================================================================ */
+
+:root {
+  /* ---- ACCENT ---- */
+  --brand: #C9500A;  --brand-rgb: 201,80,10;
+  --brand-bright: #F5B521;  --brand-bright-rgb: 245,181,33;
+  --brand-deep: #A84206;
+
+  /* ---- LIGHT NEUTRALS ---- */
+  --bg: #FFFBF2;
+  --bg-alt: #FFF3D6;
+  --card: #FFFFFF;
+  --ink: #1F1408;  --ink-rgb: 31,20,8;
+  --ink-soft: #5A4630;
+  --muted: #7A6650;
+  --border: rgba(201,80,10,.16);
+  --border-strong: rgba(201,80,10,.30);
+
+  /* ---- DARK NEUTRALS ---- */
+  --bg-dark: #1A1208;
+  --bg-dark-alt: #241A0D;
+  --bg-dark-elev: #302312;
+  --ink-dark: #FFF6E3;
+  --ink-dark-soft: #EBDDC0;
+  --muted-dark: #B8A47F;
+  --border-dark: rgba(255,246,227,.10);
+  --border-dark-strong: rgba(255,246,227,.18);
+
+  /* ---- FUNCTIONAL ---- */
+  --success: #2E8B57;
+  --danger: #B42318;  --danger-rgb: 180,35,24;
+  --star: #F5B521;
+  --gold: #F5B521;
+
+  /* ---- TYPE ---- */
+  --fh: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  --fb: var(--font-manrope), 'Manrope', 'Helvetica Neue', sans-serif;
+  --fh-weight: 600;
+  --fh-weight-sub: 600;
+
+  /* ---- RADII ---- */
+  --r-sm: 8px; --r: 12px; --r-lg: 16px; --r-xl: 24px;
+
+  /* ---- ROLE ALIASES ---- */
+  --brand-soft: rgba(var(--brand-rgb), .10);
+  --brand-ring: rgba(var(--brand-rgb), .25);
+  --brand-fill: rgba(var(--brand-rgb), .07);
+  --brand-text: var(--brand-deep);
+  --leaf: var(--brand);
+  --action: var(--brand);  --action-rgb: var(--brand-rgb);
+  --action-bright: var(--brand-bright);
+  --action-deep: var(--brand-deep);
+  --action-fill: rgba(var(--brand-rgb), .07);
+  --accent-word: #B84A06;
+  --accent-text-light: var(--brand-deep);
+  --accent-text-dark: var(--brand-bright);
+  --announce-chip: var(--brand-bright);
+  --announce-chip-ink: #1A1208;
+  --cta-ink: #FFFFFF;
+  --cta-ink-on-dark: #1A1208;
+
+  /* ---- DERIVED ---- */
+  --grad-brand:       linear-gradient(135deg, var(--brand-deep), var(--brand));
+  --grad-announce:    linear-gradient(90deg, var(--brand-deep), var(--brand) 50%, var(--brand-deep));
+  --grad-cta:         linear-gradient(180deg, #E0640F 0%, var(--brand) 50%, var(--brand-deep) 100%);
+  --grad-cta-on-dark: linear-gradient(180deg, #FFD15C 0%, var(--brand-bright) 50%, #D9961A 100%);
+  --grad-urgency:     linear-gradient(135deg, var(--danger) 0%, #D92D20 100%);
+  --grad-guarantee:   linear-gradient(135deg, var(--bg-dark-alt), var(--bg-dark-elev));
+  --hero-stage:       linear-gradient(180deg, #FFFCF4 0%, #FFF0CC 100%);
+  --hero-bloom:       radial-gradient(circle, rgba(var(--brand-bright-rgb), .22), transparent 65%);
+  --glow-cta:         0 8px 28px rgba(var(--brand-rgb), .32);
+  --glow-cta-hover:   0 12px 36px rgba(var(--brand-rgb), .45);
+  --glow-cta-on-dark: 0 8px 28px rgba(var(--brand-bright-rgb), .30);
+  --shadow-card:      0 2px 12px rgba(var(--ink-rgb), .05);
+  --shadow-card-hover: 0 10px 28px rgba(var(--brand-rgb), .14);
+  --inset-hi:         inset 0 1px 0 rgba(255,255,255,.22);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--fb);
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--brand-text); text-decoration: none; }
+img { max-width: 100%; height: auto; display: block; }
+button { font-family: inherit; cursor: pointer; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
