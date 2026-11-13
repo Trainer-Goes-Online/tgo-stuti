@@ -1,21 +1,16 @@
 import type { CSSProperties } from 'react';
 import { asset } from './asset-version';
 import { CtaLockup } from './CtaLockup';
-import { MediaPlaceholder } from './MediaPlaceholder';
 
 /**
  * BEAT 1 · hero (§8 focal media). There is no VSL: the focal object is
- * Stutie's photograph, set in the VSL frame's place.
+ * Stutie's photograph in a circle, set in the VSL frame's place.
  *
  * Copy order, fixed: audience pill → two-tier H1 → assurance line → lead →
  * concern chips (the copy's 4 + 3 rows) → photo → CTA lockup →
  * credibility table.
- *
- * TO FILL: set HERO_PHOTO.src and its real pixel w/h. The frame takes its
- * width from the file's own ratio (portrait or landscape both fit, nothing
- * is cropped beyond the frame's edge). Bump ASSET_V in the same pass.
  */
-export const HERO_PHOTO = { src: '', w: 1200, h: 1500 };
+export const HERO_PHOTO = { src: '/expert/stutie.webp', w: 1200, h: 1500 };
 
 const CHIP_ROWS = [
   ['Career & Job Changes', 'Financial Setbacks', 'Marriage Delays', 'Chronic Health Issues'],
@@ -32,8 +27,6 @@ const STATS = [
 const d = (s: string) => ({ '--d': s }) as CSSProperties;
 
 export function Hero() {
-  const ar = (HERO_PHOTO.w / HERO_PHOTO.h).toFixed(4);
-
   return (
     <section id="top" className="sdp-hero">
       <div className="sdp-wrap sdp-hero-inner">
@@ -74,25 +67,16 @@ export function Hero() {
           ))}
         </div>
 
-        <figure className="sdp-portrait" data-sdp-reveal style={{ '--ar': ar, '--d': '.2s' } as CSSProperties}>
-          <div className="sdp-portrait-media">
-            {HERO_PHOTO.src ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={asset(HERO_PHOTO.src)}
-                alt="Stutie Gupta, The Soul Architect"
-                width={HERO_PHOTO.w}
-                height={HERO_PHOTO.h}
-                decoding="async"
-              />
-            ) : (
-              <MediaPlaceholder
-                label="Stutie’s picture"
-                note="Portrait · 4:5 assumed · 1200×1500 or larger"
-              />
-            )}
-          </div>
-        </figure>
+        <div className="sdp-hero-portrait" data-sdp-reveal style={d('.2s')}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={asset('/expert/stutie-circle.webp')}
+            alt="Stutie Gupta, The Soul Architect"
+            width={640}
+            height={640}
+            decoding="async"
+          />
+        </div>
 
         <div data-sdp-reveal style={d('.26s')}>
           <CtaLockup />
