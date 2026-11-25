@@ -74,10 +74,10 @@ export function Hero() {
         <div className="sdp-hero-feature" data-sdp-reveal style={d('.2s')}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={asset('/expert/stutie-hero-stats.webp')}
+            src={asset('/expert/Stutie_VSL_Image.webp')}
             alt="Stutie Gupta: 1.5M+ social media audience, 1000+ women coached, 11+ years in women’s health"
-            width={1536}
-            height={1024}
+            width={1448}
+            height={1086}
             fetchPriority="high"
             decoding="async"
           />
