@@ -26,7 +26,7 @@ export const VIDEOS: VideoTestimonial[] = [
   { label: 'Video Testimonial 2', vimeoId: '1242682159', poster: '/video-testimonials/vt-02.webp', ...PORTRAIT },
   { label: 'Video Testimonial 3', vimeoId: '1242682209', poster: '/video-testimonials/vt-03.webp', ...PORTRAIT },
   { label: 'Video Testimonial 4', vimeoId: '1242682162', poster: '/video-testimonials/vt-04.webp', ...PORTRAIT },
-  { label: 'Video Testimonial 5', vimeoId: '1242682161', poster: '/video-testimonials/vt-05.webp', ...PORTRAIT },
+  { label: 'Video Testimonial 5', vimeoId: '1246513924', poster: '/video-testimonials/vt-05.webp', ...PORTRAIT },
 ];
 
 function Card({ v, onPlay }: { v: VideoTestimonial; onPlay: (v: VideoTestimonial) => void }) {

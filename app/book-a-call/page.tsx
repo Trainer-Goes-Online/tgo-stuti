@@ -15,6 +15,7 @@ import { AlertIcon, WhatsappIcon } from '@/components/shared/icons';
 import { CAL_LINK } from '@/lib/booking';
 import { CALL_DECK, CALL_IS_NOT, CALL_STEPS, FAQ_PRIOR, FAQ_REMEDIES, FAQ_WHO } from '@/lib/call-copy';
 import { EMAIL_LABEL, LEGAL, PHONE_DIGITS } from '@/lib/legal';
+import { readLead } from '@/lib/lead-store';
 import { trackAddToCart, trackSchedule, trackViewItem } from '@/lib/track';
 
 const CAL_ORIGIN = 'https://app.cal.com';
@@ -154,9 +155,18 @@ export default function BookACallPage() {
       Cal.config = { ...Cal.config, forwardQueryParams: true };
       const ns = Cal.ns![CAL_NS];
 
+      /* Pre-fill from the quiz so the visitor does not type it twice. */
+      const lead = readLead();
+      const prefill: Record<string, string> = {};
+      if (lead) {
+        const name = `${lead.firstName} ${lead.lastName}`.trim();
+        if (name) prefill.name = name;
+        if (lead.email) prefill.email = lead.email;
+      }
+
       ns('inline', {
         elementOrSelector: `#${MOUNT_ID}`,
-        config: { layout: 'month_view', useSlotsViewOnSmallScreen: 'true' },
+        config: { layout: 'month_view', useSlotsViewOnSmallScreen: 'true', ...prefill },
         calLink: CAL_LINK,
       });
       ns('ui', {

@@ -9,6 +9,7 @@ import { ForYouIf } from './ForYouIf';
 import { Hero } from './Hero';
 import { Method } from './Method';
 import { Proof } from './Proof';
+import { QuizGate } from './QuizModal';
 import { ScrollReveal } from './ScrollReveal';
 import { StickyCta } from './StickyCta';
 import { TrustRow } from './TrustRow';
@@ -46,6 +47,8 @@ export default function LandingPage() {
       <Faq />
       <Finale />
       <StickyCta />
+      {/* every CTA above opens the pre-call quiz; see QuizModal.tsx */}
+      <QuizGate />
     </main>
   );
 }

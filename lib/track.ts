@@ -2,6 +2,7 @@
 
 import { site, GA4_ITEM_ID, PRODUCT_LABEL } from '@/lib/site';
 import { collectSignals } from '@/lib/client-signals';
+import { readLead } from '@/lib/lead-store';
 import type { SendableEvent } from '@/lib/meta-capi';
 import { ga4AddToCart, ga4GenerateLead, ga4ViewItem, once, type Ga4Item } from '@/lib/ga4';
 
@@ -58,10 +59,21 @@ export function trackAddToCart() {
   });
 }
 
-/** From Cal's booking callback only. Keyed on Cal's booking uid when it sends one. */
+/** From Cal's booking callback only. Keyed on Cal's booking uid when it sends one.
+ *  Carries the quiz's identity (email, phone, name, city) so Schedule matches
+ *  as well as Lead and QualifiedLead did. */
 export function trackSchedule(bookingId: string) {
   once(`schedule_${bookingId || `t${Date.now()}`}`, () => {
-    capi('Schedule', bookingId ? { bookingId } : {});
+    const lead = readLead();
+    const identity: Record<string, string> = {};
+    if (lead) {
+      if (lead.email) identity.email = lead.email;
+      if (lead.phone) identity.phone = lead.phone;
+      if (lead.firstName) identity.firstName = lead.firstName;
+      if (lead.lastName) identity.lastName = lead.lastName;
+      if (lead.city) identity.city = lead.city;
+    }
+    capi('Schedule', { ...identity, ...(bookingId ? { bookingId } : {}) });
     ga4GenerateLead({ value: 0, currency: 'INR' });
   });
 }

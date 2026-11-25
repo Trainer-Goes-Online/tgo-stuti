@@ -17,12 +17,13 @@ const CHIP_ROWS = [
   ['Relationship Problems', 'Business Decisions', 'Feeling Stuck In Life'],
 ] as const;
 
-const STATS = [
-  { num: '1000+', lbl: 'People Guided Globally' },
+/* `num` as a pair = a longer figure set on two fixed lines at a smaller size */
+const STATS: ReadonlyArray<{ num: string | readonly [string, string]; lbl: string }> = [
   { num: '17+ Years', lbl: 'Of Experience' },
-  { num: '4-Part Life Analysis', lbl: 'Beyond Traditional Astrology' },
+  { num: '1000+', lbl: 'People Guided Globally' },
+  { num: ['4D Comprehensive', 'Reading'], lbl: 'Beyond Kundli & Numerology' },
   { num: '100%', lbl: 'Personalised Reading' },
-] as const;
+];
 
 const d = (s: string) => ({ '--d': s }) as CSSProperties;
 
@@ -70,15 +71,24 @@ export function Hero() {
           ))}
         </div>
 
-        <div className="sdp-hero-portrait" data-sdp-reveal style={d('.2s')}>
+        <div className="sdp-hero-feature" data-sdp-reveal style={d('.2s')}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={asset('/expert/stutie-circle.webp')}
-            alt="Stutie Gupta, The Soul Architect"
-            width={640}
-            height={640}
+            src={asset('/expert/stutie-hero-stats.webp')}
+            alt="Stutie Gupta: 1.5M+ social media audience, 1000+ women coached, 11+ years in women’s health"
+            width={1536}
+            height={1024}
+            fetchPriority="high"
             decoding="async"
           />
+        </div>
+
+        <div className="sdp-hero-name" data-sdp-reveal style={d('.23s')}>
+          <p className="sdp-hero-name-nm">Stutie Gupta</p>
+          <p className="sdp-hero-name-role">
+            <span className="part">Soul Architect</span> <span className="sep" aria-hidden>|</span>{' '}
+            <span className="part">Founder, 4D Clarity Method</span>
+          </p>
         </div>
 
         <div data-sdp-reveal style={d('.26s')}>
@@ -88,7 +98,13 @@ export function Hero() {
         <div className="sdp-cred-row" data-sdp-reveal style={d('.34s')}>
           {STATS.map((s) => (
             <div className="sdp-cred-card" key={s.lbl}>
-              <div className="sdp-cred-num">{s.num}</div>
+              {typeof s.num === 'string' ? (
+                <div className="sdp-cred-num">{s.num}</div>
+              ) : (
+                <div className="sdp-cred-num is-long">
+                  <span>{s.num[0]}</span> <span>{s.num[1]}</span>
+                </div>
+              )}
               <div className="sdp-cred-lbl">{s.lbl}</div>
             </div>
           ))}

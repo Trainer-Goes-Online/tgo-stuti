@@ -34,10 +34,11 @@ export type StandardEvent =
   | 'ViewContent'
   | 'AddToCart'
   | 'InitiateCheckout'
+  | 'Lead'
   | 'Purchase'
   | 'Schedule';
 
-/** A segment label on InitiateCheckout, never a new funnel stage. */
+/** Fired by /api/lead alongside Lead when the quiz qualifies the visitor. */
 export type CustomEvent = 'QualifiedLead';
 
 export type SendableEvent = StandardEvent | CustomEvent;
