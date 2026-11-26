@@ -45,7 +45,7 @@ export const CONCERNS: Choice[] = [
 
 export const INVEST: Choice[] = [
   { value: 'yes', label: 'Yes, I’m open to investing in personalised guidance.' },
-  { value: 'no', label: 'No, I’m only looking for free guidance at this stage.' },
+  { value: 'no', label: 'I was looking for something free' },
 ];
 
 export const PACKAGES: Choice[] = [
@@ -56,8 +56,8 @@ export const PACKAGES: Choice[] = [
   },
   {
     value: 'guidance',
-    label: '3-Month Personalised Guidance | ₹21,000',
-    note: 'Three comprehensive readings and ongoing support to implement.',
+    label: '3-Month Energy Alignment Package | ₹18,500',
+    note: '3 personalised readings to understand recurring energy patterns, apply corrective measures and review your progress with continued guidance.',
   },
   /* "__" is where the modal puts the amount box (₹, up to 4 digits) */
   { value: 'budget', label: 'I’m on a tight budget, I can only invest up to __ right now.' },
